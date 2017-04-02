@@ -14,18 +14,20 @@ def mult_random_search(f, params_mean, params_std=1., n_workers=2, batch_size=10
     ret_params = params_mean
     ys = np.zeros(batch_size)
     best_ys = 0
+    pool = Pool(processes=n_workers)
     for _ in range(n_iter):
-        # pool = Pool(processes=n_workers)
         # TO BE IMPLEMENTED: random search for parameters
-        for i in range(batch_size):
-            t = np.random.randn(params_mean.size)
-            r = np.linalg.norm(t - best_params)
-            d = t/r
-            params  =  best_params + d
-            ys[i] = f(params)
-            if ys[i] > best_ys:
-                best_params = params
-                best_ys = ys[i]
+        t = np.random.randn(batch_size, params_mean.size)
+        r = np.linalg.norm(t - best_params, axis=0)
+        d = t/r
+        params  =  best_params + d
+        # ys = np.array([f(p) for p in params])
+        ys = np.array(pool.map(f, params))
+
+        best_inds = ys.argsort()[::-1][0]
+        best_params = params[best_inds]
+        best_ys = ys[best_inds]
+
 
         # print np.max(ys), i
         yield {'results' : ys, 'best_params' : best_params}
