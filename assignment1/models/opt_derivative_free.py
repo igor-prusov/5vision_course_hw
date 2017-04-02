@@ -34,11 +34,12 @@ def mult_cem(f, params_mean, params_std=1., n_workers=2, batch_size=100, n_iter=
     """ Multiprocessing version of CEM algorithm."""
     n_elite = int(np.round(batch_size * elite_frac))
     params_std = np.ones_like(params_mean) * params_std
+    pool = Pool(processes=n_workers)
     for _ in range(n_iter):
-        # pool = Pool(processes=n_workers)
         # TO BE IMPLEMENTED: CEM for search of parameters
         params = np.array([params_mean + dth for dth in params_std[None, :] * np.random.randn(batch_size, params_mean.size)])
-        ys = np.array([f(p) for p in params])
+        # ys = np.array([f(p) for p in params])
+        ys = np.array(pool.map(f, params))
         elite_inds = ys.argsort()[::-1][:n_elite]
         elite_params = params[elite_inds]
         params_mean = elite_params.mean(axis=0)
