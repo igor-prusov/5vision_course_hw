@@ -50,7 +50,7 @@ class_weights = get_class_weights(labels_list)
 
 # configure checkpoints
 filepath=WEIGHTS_DIR + "weights-improvement-{epoch:02d}-{val_acc:.2f}.hdf5"
-model_checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
+model_checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=False, mode='max')
 callbacks_list = [ model_checkpoint]
 
 history = model.fit_generator(

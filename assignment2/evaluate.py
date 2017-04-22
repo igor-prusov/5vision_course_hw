@@ -23,8 +23,24 @@ for class_name in class_names:
             image_name_pool.append(file[:-5])
 
 # list of trained models to check
-list_of_checkpoints = ['weights-improvement-35-0.61.hdf5', 
-                       'weights-improvement-46-0.65.hdf5']  # Add names of parameters files
+list_of_checkpoints = [ "weights-improvement-00-0.20.hdf5",
+        "weights-improvement-04-0.32.hdf5",
+        "weights-improvement-08-0.36.hdf5",
+        "weights-improvement-15-0.51.hdf5",
+        "weights-improvement-50-0.69.hdf5",
+        "weights-improvement-00-0.24.hdf5",
+        "weights-improvement-06-0.23.hdf5",
+        "weights-improvement-09-0.37.hdf5",
+        "weights-improvement-16-0.48.hdf5",
+        "weights-improvement-80-0.70.hdf5",
+        "weights-improvement-02-0.22.hdf5",
+        "weights-improvement-06-0.41.hdf5",
+        "weights-improvement-10-0.39.hdf5",
+        "weights-improvement-21-0.54.hdf5",
+        "weights-improvement-03-0.25.hdf5",
+        "weights-improvement-07-0.24.hdf5",
+        "weights-improvement-15-0.45.hdf5",
+        "weights-improvement-25-0.66.hdf5"]
 
 for checkpoint in list_of_checkpoints:
     # load json and create model
