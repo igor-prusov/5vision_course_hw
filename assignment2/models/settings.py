@@ -21,5 +21,5 @@ NB_EPOCHS = 100
 BATCH_SIZE = 50
 
 # learning rate
-LEARNING_RATE = 1e-4
+LEARNING_RATE = 1e-3
 
