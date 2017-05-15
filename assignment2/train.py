@@ -46,7 +46,7 @@ NB_VAL_SMPL = sum([len(files) for r, d, files in os.walk(VALIDATION_DATA_DIR)])
 # get class weights for dealing with class imbalances
 correct_train_labels = pd.read_csv('trainLabels.csv')
 labels_list = correct_train_labels['level'].values.tolist()
-class_weights = get_class_weights(labels_list)
+class_weights = get_class_weights(labels_list, 0.15)
 
 # configure checkpoints
 filepath=WEIGHTS_DIR + "weights-improvement-{epoch:02d}-{val_acc:.2f}.hdf5"
